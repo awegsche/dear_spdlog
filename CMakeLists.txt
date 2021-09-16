@@ -17,7 +17,7 @@ find_package(imgui CONFIG REQUIRED)
 # --------------------------------------------------------------------------------------------------
 # ---- Test executable -----------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------
-add_executable (test_dear_spdlogger "dear_spdlogger.cpp" "dear_spdlogger.h")
+add_executable (test_dear_spdlogger "dear_spdlogger.cpp" "dear_spdlogger.h" "src/dear_sink.cpp")
 
 target_link_libraries(test_dear_spdlogger
 	PRIVATE
@@ -30,7 +30,7 @@ target_link_libraries(test_dear_spdlogger
 # --------------------------------------------------------------------------------------------------
 # ---- Library -------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------
-add_library (dear_spdlogger "src/dear_sink.h")
+add_library (dear_spdlogger "src/dear_sink.cpp")
 
 target_link_libraries(dear_spdlogger
 	PRIVATE

@@ -1,6 +1,10 @@
+#ifndef __DEAR_SINK_H
+#define __DEAR_SINK_H
 #include <vector>
 #include <iostream>
+#include <mutex>
 
+#include <spdlog/spdlog.h>
 #include <spdlog/sinks/base_sink.h>
 #include <imgui.h>
 
@@ -73,11 +77,7 @@ namespace dear_spdlog {
 	};
 }
 
-const std::shared_ptr<dear_spdlog::dear_sink<std::mutex>> dear_sink_mt() {
-	auto llog = spdlog::create<dear_spdlog::dear_sink<std::mutex>>(std::string("llog"));
+typedef std::shared_ptr<dear_spdlog::dear_sink<std::mutex>> dear_sink_mt_t;
 
-	// I don't understand this step, shouldn't it log to all registered loggers?
-	spdlog::set_default_logger(llog);
-
-	return std::dynamic_pointer_cast<dear_spdlog::dear_sink<std::mutex>>(llog->sinks()[0]);
-}
+const dear_sink_mt_t dear_sink_mt();
+#endif // __DEAR_SINK_H
