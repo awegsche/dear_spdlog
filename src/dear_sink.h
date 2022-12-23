@@ -36,7 +36,7 @@ namespace dear_spdlog {
 		void draw_imgui(float posx = 5.0f, float posy = 5.0f, float width = 200.0f, float height = 1000.0f) const {
 			ImGui::SetNextWindowPos({posx, posy});
 			ImGui::SetNextWindowSize({ width, height });
-			ImGui::Begin("Log", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
+			ImGui::Begin("Log", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
 			for (auto const& msg : messages_) {
 
@@ -53,14 +53,14 @@ namespace dear_spdlog {
 					ImGui::SameLine();
 					ImGui::Text("|");
 					ImGui::SameLine();
-					ImGui::Text("%s", msg.message);
+					ImGui::Text("%s", msg.message.c_str());
 					break;
 				case spdlog::level::err:
 					ImGui::TextColored(LVL_ERR_CLR, "ERR");
 					ImGui::SameLine();
 					ImGui::Text("|");
 					ImGui::SameLine();
-					ImGui::Text("%s", msg.message);
+					ImGui::Text("%s", msg.message.c_str());
 					break;
 				default:
 					ImGui::TextColored(LVL_LOG_CLR, "LOG");
