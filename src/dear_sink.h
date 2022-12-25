@@ -38,7 +38,7 @@ template <typename Mutex> class dear_sink : public spdlog::sinks::base_sink<Mute
                      ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize |
                          ImGuiWindowFlags_NoCollapse);
 
-        for (size_t i = std::max(0ULL, messages_.size() - max_shown_); i < messages_.size(); ++i) {
+        for (size_t i = messages_.size() > max_shown_ ? messages_.size() - max_shown_ : 0; i < messages_.size(); ++i) {
             auto const &msg = messages_[i];
 
             switch (msg.level) {
