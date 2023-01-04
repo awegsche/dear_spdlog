@@ -11,7 +11,7 @@ ImGui window that acts as sink for spdlog.
 
 int main() {
     // setup sink
-    sink = dear_sink_mt();
+    auto sink = dear_sink_mt();
 
     spdlog::debug("this is a debug message");
     spdlog::info("this is an info message");
